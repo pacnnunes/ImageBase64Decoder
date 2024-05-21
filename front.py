@@ -1,5 +1,3 @@
-import webbrowser
-
 import streamlit as st
 import pyperclip
 import main as la
@@ -9,10 +7,7 @@ from PIL import Image
 
 st.title('Processador de Imagens')
 st.caption('by Jarvis')
-if st.sidebar.button('LIVENESS'):
-    webbrowser.open_new_tab('https://10.90.1.29:3000')
-if st.sidebar.button('JWT'):
-    webbrowser.open_new_tab('https://10.90.1.29:8501')
+
 
 
 def load_image(uploaded_file):
@@ -46,10 +41,8 @@ if 'uploaded_image' in st.session_state:
             image_base64_with_uuid = st.session_state['image_base64_with_uuid']
 
         st.text_area("Base64 Original", value=str(image_base64), height=100)
-        st.button("Copiar",pyperclip.copy(image_base64))
         st.image(processed_image, caption='Imagem Processada', use_column_width=True)
         st.text_area("Base64 Alterado", value=str(image_base64_with_uuid), height=100)
-        st.button("Copiar Alterado",pyperclip.copy(image_base64_with_uuid))
 
         buffered = BytesIO()
         processed_image.save(buffered, format=image.format)
